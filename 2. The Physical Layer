@@ -1,0 +1,37 @@
+The Physical Layer
+-------------------
+* Main focus is moving ones and zeros from one end of the link to the next;
+- It consists of devices and means of transmitting bits across the computer networks;
+* Bit - The smallest representation of data that a computer can understand; it's a one or zero;
+- Ones and Zeros are sent across the network through a process called modulation;
+* Modulation - It is a way of varying the voltage of the charges moving across the cable;
+* Line coding - Modulations used for computer networks -  enable devices and both ends of the network to realize the sata of data as a ) or a 1;
+- Line coding is the modulation of an electrical charge so that each side of a connection knows what is a one and what is a zero.
+
+Twisted Pair Cabling and Duplexing
+-----------------------------------
+- Twisted Pairs -> Copper wires twised that behave as a conduit of information preventing electromagnetic interference and crosstalk from neighbouring pairs;
+- Standard cat six cable -> 8 wires, 4 twisted pairs inside a single jacket, based on the transmission technology used the respective no of pairs are used;
+- In modern form of networking the cables enable duplex communiaction;
+* Duplex Communication - The concept that information can flow in both directions across the cable;
+* Simplex Communication - This process is unidirectional;
+- Networking cables ensures duplex communication is possible is by reserving one or two pairs for communicating in one direction and the other one or two pairs for communicating in the other direction - Simulatenous communication is possible - full duplex;
+* Half duplex - while full duplex communication is possible it is possible for only one device;
+
+- Full duplex allows communications in two directions at the same time; half duplex means that only one side can communicate at a time.
+
+Network Ports and Patch Panels
+-------------------------------
+* The ends of the twisted pair are attached to plugs. A common plug is the RJ45 port (Registered Jack 45).
+- A network cable with RJ-45 plug can connect to an RJ-45 network port.
+* Network ports are generally directly attached to the devices that make up a computer network;
+- Switched will have many network ports because their purpose is to connect to many devices;
+- Servers and desktops usually have only one or two network ports;
+- Laptops, Servers, tablets or phones probably do not have any network ports; (Wireless networking);
+- Most network ports have two small LEDs - Link LED and the other Activity LED;
+  -> Link Light - lit when a cable is properly connected to two devices that are both powered on.
+  -> Activity Light - will flash when data is actively transmitted across the cable; (Traffic or not);
+- Switches - sometimes the same LED is used for both link and activity status - additionally could indicate - link speed;
+
+* Patch panel - It is a device containing many network ports; It's just a container for the endpoints of many runs of cable;
+- Additional cables are run from a patch panel to switches or routers to provide network access to the computers at the other end of those links.
