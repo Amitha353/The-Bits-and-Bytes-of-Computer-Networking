@@ -1,0 +1,63 @@
+* Ethernet and MAC Addresses
+------------------------------
+-> Ethernet - The protocol most widely used to send data scross individual networks;
+-> Ethernet and the data link layer allow software at the higher level stack to send and receive data;
+-> Ethernet solved the problem with collison domain by - carrier sense multiple access with collision domain - CSMA/CD;
+-> CSMA/CD - Used to determine when the coomunication is clear and when a device is free to transmit data;
+    - If there is no data being transmitted on the network segment, a node will feel free to send the data;
+    - If two or more computers end up trying to send data at the same time the computers detect the collision and stop sending the data;
+    - Each device involved with the collision then waits a random interval of time before trying to send data again;
+    - This random interval prevents the data from computers from colliding again;
+    
+  * MAC address (Media Access Controll Address)
+  --------------------------------------------------
+  * A globaly unique identifier attached to an individual network interface;
+  - It is a 48-bit number normally represented by six grouping of two hexadecimal numbers;
+  * Hexadecimal - a way to represent numbers using 16 digits;
+  * Octet - In computer networking, any number that can be represented by 8 bits;
+  -> A MAC address is split into two -> OUI ( Organizationally Unique Identifier)
+      - OUI ( Organizationally Unique Identifier) - First three octets of a MAC address, these are assigned to individual hardware manufacturers by IEEE;
+      - the last three octets of MAC address can be assigned in any way the manufacturer would want but it must be unique;
+    -> Ethernet uses MAC addresses to ensure that data it sends has both an address for the machine that sebt the transmission as well as the one the transmission was intended for;
+    
+ * Unicast, Multicast, and Broadcast
+  -----------------------------------
+  -> Unicast - unicast transmission is meant for one receiving address;
+      - Identification - If the least significant bit in the first octete of a destination address is set to zero, it means that ethernet frame is intended for only the destination address.
+  -> Multicast - 
+          Identification - If the least significant bit in the first octete of a destination address is set to one, it means that ethernet frame is a multicast frame.
+  -> Broadcast - intended for all receivers on the LAN. It uses a broadcast address and constitues of all F's. FF:FF:FF:FF:FF:FF;
+  
+  * Dissecting an Ethernet Frame
+  -------------------------------
+  -> Data packet - An all-encompassing term that represents any single set of binary data being sent across a network link;
+  -> Data packets at the Ethernet level are known as Ethernet frames;
+  -> Ethernet Frame - A highly structured collection of information presented in a specific order;
+  
+  * Ethernet Frame
+  -----------------
+   Preamble - 8 bytes
+   Destination Address - 6 bytes
+   Source Address - 6 bytes
+   Tag - 4 bytes
+   Ether-type - 2 bytes
+   Payload - 0 - 1500 bytes
+   FCS - 4 bytes
+   
+   1. Preamble - 8 bytes long, can be split into 2 sections; - first 7 byes - series on 1's and 0's 
+        - act as a buffer between frames 
+        - used by network interfaces to synchronize internal clocks they use regulate the speed at which data is sent;
+     - last byte -> SFD - Start Frame Delimiter -  Signals to a receiving device that the preamble is over and that the actual frame contents will follow;
+     
+   2. Destination MAC Adress - The hardware address of the intended recipient; (48 bits / 6 bytes)
+   3. Source MAC Address - The hardware address of the source;
+   4. EtherType - 16 bits / 2 bytes long and used to describe the protocol of the contents of the frame;
+   5. Tag/VLAN Tag/ VLAN Header - 4 bytes - Indicates a VLAN frame - VLAN - Virtual LAN - A technique that enables multiple logical LANs operating on the same physical equipment; VLANs are used to segregate different forms of traffic;
+   6. Payload - It is the actual data being transported excluding the header; - contains data from higher network layers - IP, transport;
+   7. FCS - Frame Check Sequence - 4 bytes - checksum value for the entire frame - it is calculated by performing what is known as a cyclical redundancy check against the frame;
+  
+  * Cyclical Redundancy Check (CRC) - An important concept for data integrity and is used all over computing, not just network transmissions - uses polynomial division to create a number that represents a larger set of data -  to ensure the data is not corrupted;
+  
+-> Ethernet reports of data integrity; The FCS on the sender is matched with the receiver in case of a mismatch it is thrown out and is upto a higher level protocol to decide if the frame needs to be re-transmitted;
+  
+    
