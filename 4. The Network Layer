@@ -1,0 +1,13 @@
+*  The Network Layer
+---------------------
+
+-> In LAN - nodes can communicate with each other through their physical MAC addressses - works well on small scale and switches can learn the MAC addresses contected to each other port to forward transmission;
+-> Every single network interface has a unique MAC address and are not ordered in a systematic way, hence no way of knowing the location of MAC address at any point of time - not ideal for communicating long distances;
+- The nodes learn about each other through physical addressing that isn't translatable to anything besides a single network signet;
+- An alternate solution is the IP;
+
+* IP Addresses
+----------------
+
+-> IP addresses are 32-bit long numbers made up of 4 octets, and each octet is described in decimal numbers.
+  172.16.254.1
