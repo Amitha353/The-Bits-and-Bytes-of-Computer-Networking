@@ -1,7 +1,7 @@
 *  The Network Layer
 ---------------------
 
--> In LAN - nodes can communicate with each other through their physical MAC addressses - works well on small scale and switches can learn the MAC addresses contected to each other port to forward transmission;
+-> In LAN - nodes can communicate with each other through their physical MAC addressses - works well on small scale and switches can learn the MAC addresses connected to each other port to forward transmission;
 -> Every single network interface has a unique MAC address and are not ordered in a systematic way, hence no way of knowing the location of MAC address at any point of time - not ideal for communicating long distances;
 - The nodes learn about each other through physical addressing that isn't translatable to anything besides a single network signet;
 - An alternate solution is the IP;
@@ -10,4 +10,101 @@
 ----------------
 
 -> IP addresses are 32-bit long numbers made up of 4 octets, and each octet is described in decimal numbers.
-  172.16.254.1
+    172.16.254.1   -> 10101100 . 00010000 . 11111110 . 00000001  -> 4 bytes - 32 bits; (0-255) -> Dotted Decimal Notation;
+
+-> IP Addresses are distributed in large sections to various organizations and companies instead of being determined by hardware vendors - IP addresses are more hierarchical and easier to store data than physical addresses;
+-> IP addresses belong to networks, not to devices attached to those networks;
+-> A Laptop will have the same MAC address whereever it is by an IP address will differ - home network, cafe network, etc, the LAN at a home network or internet cafe will each be individually responsible to handing out an IP address;
+
+-> Dynamic Host Configuration Protocol (DHCP) - enables to add a new host to the network, or add an IP addressto a host newly added to the network - this is termed as Dynamic IP Address; The other alternative is Static IP Address(Configured on a node manually);
+
+-> In most cases, static IP addresses are reserved for servers and network devices, while dynamic IP addresses are reserved for clients;
+
+* IP Datagram and Encapsulation
+-----------------------------------
+- packet of the network layer -> IP Datagram;
+- IP datagram - A highly structured series of fields that are strictly defined;
+- 2 primary sections of a IP datagram are Header and Payload;
+
+0          4               8             16           19                    31
+-----------------------------------------------------------------------------
+| Version  | Header Length | Service Type |         Total Length            |
+-----------------------------------------------------------------------------
+|            Identification               |    Flags   |   Fragment Offset  |
+-----------------------------------------------------------------------------
+|         TTL              | Protocol     |     Header Checksum             |
+-----------------------------------------------------------------------------
+|                               Source IP Address                           |
+-----------------------------------------------------------------------------
+|                               Destination IP Address                      |
+-----------------------------------------------------------------------------
+|                         Options                            | Padding      |
+-----------------------------------------------------------------------------
+
+1. Version - IPv4, IPv6; 4 - bit
+2. Header Length - 4 bit - length of the entire header; (20 bytes len - IPv4 )
+3. Service Type - 8 bits - specify the quality of the service - QoS technologies - could also prioritize IP Datagrams;
+4. Total Length - 16 bits - Indicate the total length of the IP datagram it's attached to;
+5. Identification - 16 bit number used to group messages together;
+  The maximum size of a single datagram is the largest number that can be represented with 16 bits; 65,535;
+  If the total amount of data that needs to be sent is larger that what can fit a single datagram, the IP layer needs to split the data   up into many individual packets and the identification number will be the same for the packets to ensure the receiving ends             understands its all a part of the same transaction;
+6. Flag - used to indicate if a datagram is allowed to be fragmented or to indicate the datagram has been fragmented already;
+7. Fragmentation - Process of taking a singlr IP datagram and splitting it up into several smaller datagrams;
+8. TTL - Time ot Live - 8 bit, indicates how many router hops a datagram can traverse before it's thrown away;
+   As a datagram hops from one router to another each router decrements the TTL value by 1, and it's forwarded until it reaches 0,          thereafter it is discarded this prevents looping;
+9. Protocol - 8 bit, contains data about the transport layer protocol being used - TCP/UDP;
+10. Header checksum field - A checksum of the contents of the entire IP datagram header - ensures the datagram data is not corrumpted       and as the TTL value changes at each router it touches the checksum field value also changes;
+11. Source IP Address - 32 bit;
+12. Destination IP Address - 32 bit;
+13. Options - An optional field and is used to set special characteristics for datagrams primarily for testing purpose;
+14. Padding - Series of 0's to ensure the header is the correct total size;
+
+-> Encapsulation -> The entire content of an IP datagram are encapsulated as the payload of an Ethernet frame;
+
+                                         -----------------
+                                         |     Message    |   ---------------------------- Application
+                                         ------------------
+                                                 |
+                                                 |
+                          ---------------------------------
+                          TCP/UDP Header |     Message    |  -------------------------------  Transport
+                          ---------------------------------
+                                              |
+                                              |
+               --------------------------------------------                               
+               |IP HEADER|  TCP SEGMENT/UDP DATAGRAM      | --------------------------------- Network
+               --------------------------------------------
+                                              |
+                                              |
+----------------------------------------------------------------------------                                              
+ETHERNET HEADER|                 IP DATAGRAM              | ETHERNET FOOTER | ----------------- Data-link
+-----------------------------------------------------------------------------
+
+Each layer is needed for the one above it;
+----------------------------------------------------------------------------------------------------------------------------------------
+* IP Address Classes
+--------------------
+-> Ip addresses can be split into 2 sections - network ID and the host ID; 
+-> Address Class System - A way of defining how a global IP address space is split up;
+-> 3 primary types of address classes 
+  * Class A - 1st octet - Network ID, last three are used for Host ID; begin 0 ; 0 - 126  | 16 Million hosts ; 
+  * Class B - first two octets - Network ID, second two are used for the Host ID; begins with 10 ; 128 - 191 | 6400 Hosts ; 
+  * Class C - first three octets - Network ID, last octet - Host ID; begins with 110 ; 192 - 223 | 254 Hosts ;
+  * Class D - Begin with 1110 - used for multicasting - how a single IP datagram can be sent to an entire network at once ; 224 - 239;
+  * Class E - Unassigned and used for testing purposes - 240 - 255;
+  
+-> This class system has been replaced by CIDR (Classless inter-domain routing);
+
+* Address Resolution Protocol (ARP)
+-------------------------------------
+-> MAC Addresses are used at the Data-link Layer.
+-> IP addresses are used at the Network Layer.
+-> ARP - A protocol used to discover the hardware address of a node with certain IP address;
+-> Most network connected devices while retaining local ARP table;
+-> ARP table - A list of IP Addresses and the MAC addresses associated with them;
+
+-> The IP datagram once fully formed needs to be encapsulated inside an Ethernet frame, hence the transmitting device needs a destination MAC address to complete the Ethernet frame header;
+-> Using the data in the ARP table the destination MAC address is seeked or else the transmitting device sends a broadcast ARP message to the MAC broadcast address which is FF:FF:FF:FF:FF:FF - these are delivered to all computers on a local network and the respective network interface sends a ARP response - that contains the MAC address for the network interface;
+
+-> ARP table entries generally expire after short amount of time to ensure changes in the network are accounted;
+-----------------------------------------------------------------------------------------------------------------------------------
