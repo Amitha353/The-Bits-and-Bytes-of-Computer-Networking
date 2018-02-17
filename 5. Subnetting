@@ -1,0 +1,68 @@
+* Subnetting
+--------------
+-> The process of taking a large network and splitting it up into many individual and smaller subnetworks or subnets;
+-> Address classes give us a way to break the total global IP space into discrete networks; 
+ - Example : To communicate with IP address - 9.100.100.100;
+    - Core routers on the Internet know the IP belongs to 9.0.0.0 Class network;
+    - The Core routers route the message to the Gateway router responsible for the network by looking at the network ID;
+    - Once the packet gets to the gateway router 9.0.0.0 Class A network, the router is responsible for getting it to the proper system by looking at the host id;
+    - But a Class A address - consists of 16 Million hosts (Just too many devices to connect to the same router) -  That when subnetting comes in - each individual subnet will have its own gateway routers serving as an ingress and egress point for each subnet.
+    
+ -> A Gateway router specifically serves as the entry and exit path to a certain network;
+ -> On the otherhand core internet routers communicate with only other core internet routers;
+  
+ * Subnet Masks
+----------------
+- Network ID's are used to identify networks and Host ID's are used to identify individual hosts;
+- Subnet ID 
+    - An IP address is 32-bit long, without subnetting - certain portion consists of network id and the rest will be host ids;
+    - With subnetting - some of the bits that would normally comprise of the host ID are actually used for the subnet ID;
+    - IP address - can consist of a network id/ subnet id/host id;
+ - At the internet level - core routers care about the network id - use it to send the datagram to the appropriate gateway router;
+ - The gateway router then has additional information it can use to send the datagram along to the destination machine or the next router in the path to get there;
+ - Finally, the host id is used by the last router to deliver the datagram to the intended recipient machine;
+ 
+ -> SUbnet IDs are calculated via the Subnet mask;
+ -> Subnet masks - 32-bit numbers that are normally written as four octets in decimal - It is a binary number that has two sections -  the beginning part - the mask itself is a string of ones and zeros come after that;
+    - The subnet masks with 1's tells us what we can ignore when computing a Host IS;
+    - The part with zeros tells us what to keep;
+    - Example 1.- subnet mask - 255.255.255.0 -> 11111111 11111111 11111111 00000000; (Here only the last octet can be reserved for host ids)
+       - 1's - tell the router what part of an IP address is the subnet ID;
+    * A subnet can usually only contain two less than the total number of the host IDs available; (0 - 22, 0 can't be used and 255 is used for broadcast address for the subnet); (1-254 are available for the hosts);
+    
+    - Example 2. The subnet id -> 255.255.255.224 -> 11111111 11111111 11111111 11100000; (5 0's); - Means five bits of Host ID space or a total of 32 addresses;
+  
+  * The ip address - subnet combination example
+  Ip address - 9.100.100.100;
+  Subnet mask- 255.255.255.224 - (27 - 1's and 5 - 0's)
+  Representation - 9.100.100.100/27;
+    
+* Subnet Masks - A way for computers to use "and operators" to determine if an IP address exists on the same network;
+  Ip address -  |  9      |   100     |  100       | 100      |
+                   AND         AND         AND        AND
+  Subnet mask-  |11111111 | 11111111  |  11111111  | 00000000 |
+  
+  RESULT - > 9.100.100.0;
+  
+  * CIDR - Classless Inter-Domain Routing
+-------------------------------------------
+-> Address classes were the first attempt at splitting the global Internet IP space;
+-> Subnets were address when the address classes weren't an efficient way of keeping everything organized;
+- CIDR - flexible approach to describe blocks of IP addresses - it expands on the concepts of subnetting by using subnet masks to demarcate networks;
+* Demarcation point - To describe where one network or a system ends and another one begins;
+- Previously - n/w id/ subnet id/host id - were required to deliever a datagram to the intended destination, but with CIDR the network id and the subnet id are combined into one;
+- Consider
+        Ip address - 9.100.100.100;
+        Subnet mask- 255.255.255.0
+        9.100.100.100/24
+ - Previously networks were static - class a, b, etc, but subnets could change;
+ - CIDR allows networks themselves to be of differing sizes;
+ - If a company neede more addresses than a single class C could provide, they would need anothe entire second class C; - Routers will have multiple entries in the routing table;
+ - With CIDR - they could combine the address space into one contiguous chuck with a net mask;  Example (/23 - 255.255.254.0);
+ - Here the routers will now have only one entry in the routing table to deliver traffic to these addresses instead of two;
+ 
+ - /24 network is 8 host bits - 2^8 = 256 (254 available hosts);
+ - Two /24 networks provide - 254 + 254 = 508 hosts;
+ - /23 network - 9 host bits. 2 ^ 9 = 512;
+ - 512 - 2 = 510 hosts;
+ ----------------------------------------------------------------------------------------------------------------------
