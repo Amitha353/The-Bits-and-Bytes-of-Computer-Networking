@@ -53,3 +53,23 @@
 ----------------------------------------------------------------------------------------------------------------------------------------
 * Interior Gateway Protocols
 -----------------------------
+-> Routing Protocols - Special protocols that routers use to communicate with each other to share information;
+-> Routing Protocols fall into 2 main categories 
+      a. Interior Gateway Protocols - split into 2 - Link state routing protocols, and distance-vector protocols;
+      b. Exterior Gateway Protocols;
+      
+ -> Interior Gateway Protocols - Used by routers to share information within a single autonomous system;
+ -> Autonomous System - A collection of networks that all fall under the control of a single network operator;
+ 
+ 1. Distance-Vector Protocol - older standard,  any router employing distance vector protocol - takes the routing table and sends the list/vector to every neighbouring router;, the routers are updates and the optimum path is choosen to transfer the tranfic;
+    - The routers don't know must about the state of the autonomous system, hence can be slow to adapt to changes in the network far from it;
+ 
+ 2. Link state protocol - Each router advertises the state of the link to the network interfaces; Requires more memory to hold all the data and more processing power -  calculate using sophisticated algorithms;
+---------------------------------------------------------------------------------------------------------------------------------------
+* Exterior Gateway Protocols
+-----------------------------
+- It is used between routers representing the edges of an autonomous system;
+- Internet Assigned Numbers Authority (IANA) - A non-profit organization that helps manage IP address allocation and ASN (Autonomous System Number) allocation;
+- ASN - Numbers assigned to individual autonoumous systems - 32 bit numbers - single decimal number;
+        - It never need to change in order to represent networks or hosts, only core internet routing tables need to be updated;
+        - It is hardly referred to by humans; (Example - AS19604 = IBM);
