@@ -1,0 +1,55 @@
+* Basic Routing Concepts
+-------------------------
+-> Router - A network device that forwards traffic depending on the destination address of that traffic, it has to be connected to atleast two network interfaces to complete the job;
+
+-> Basic Routing
+  1. Router receives a data packet;
+  2. Examines rthe destination IP address;
+  3. Looks up IP destination network in the routing table;
+  4. Forwards traffic to the destination;
+ 
+ -> Example - 2 Networks
+ -----------------------------
+ 1. Consider a router connected two networks, it has an interface on each network;
+      - Network A - Address Space - 192.168.1.0/24 - router network interface - 192.168.1.1;
+      - Network B - Address Space - 10.0.0.0/24 - router network interface - 10.0.0.254;
+      - A computer on network a with IP address - 192.168.1.100 sends a packet to the address on network B - 10.0.0.10;
+ 2. The computer in Network A knows that 10.0.0.10 is not on its local subnet;
+   So it sends the packet to the MAC address of its gateway router;
+ 3. The routers interface at Network A receives the packet, since the destination MAC address belongs to it.
+ 4. The router then trips away the Data Link Layer encapsulation, leaving the network layer content (IP datagram);
+ 5. The router now examines and inspects the IP datagram header for the destination IP field -  it finds the destination IP of 10.0.0.10;
+ 6. The router looks at its routing table and sees that Network B  is the correct network for the destination IP;
+ 7. It also sees this network is just one hop away, since it is directly connected, the router even has the MAC address for this IP in its ARP table;
+ 8. The router now needs to form a new packet to forward it along to network B.
+ 9. It takes all the data from the IP datagram and duplicates it, decrements the TTl field by 1 and calculates a new checksum;
+ 10. The router then encapsulates the new IP datagram inside a new Ethernet frame - by setting its own MAC address of the interface on network B as the source MAc address and since it has the MAC address of 10.0.0.10 in its ARP table it sets it as the destination MAC address;
+ 11. Lastly, the packet is sent out of its network interface on Network B and the data gets delivered to the node at 10.0.0.10;
+ 
+ -> Example - 3 Networks
+ ---------------------------
+ 1.   - Network A - Address Space - 192.168.1.0/24 - router network interface - 192.168.1.1;
+      - Network B - Address Space - 10.0.0.0/24 - router network interface - 10.0.0.254;
+      - Network C - Address Space - 172.16.1.0/23 - router network inteface - 172.16.11;
+      
+      N/w A - R1 - N/w B - R2 - N/W c;
+      
+ 2. Computer at 192.168.1.100 needs to send a packet to 172.16.1.100;
+   Sends it through N/w B -> A -> B -> C;
+   
+   
+* In order to protect against breakages, core Internet routers are connected in a Mesh, there might be many different paths for a packet to take;
+----------------------------------------------------------------------------------------------------------------------------------------
+* Routing Tables
+----------------------
+-> Most basic and common - 4 columns :
+    a. Destination Address -  a row for each network the router knows; - Network Ip and net Mack - 192.168.1.1 | 255.255.255.0 ->                 CIDR - 192.168.1.1/24
+          Catchall entry - that matches any IP address that does not have an explicit network listing;
+    b. Next Hop - The IP address of the next router that should receive data intended for the destination;
+    c. Total Hops - Keeps track of how far away the destination currently is;
+    d. Interface - To know which interface matches the destination network;
+    
+  * Core routers on the Internet can have million entries;
+----------------------------------------------------------------------------------------------------------------------------------------
+* Interior Gateway Protocols
+-----------------------------
