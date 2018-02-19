@@ -73,3 +73,39 @@
 - ASN - Numbers assigned to individual autonoumous systems - 32 bit numbers - single decimal number;
         - It never need to change in order to represent networks or hosts, only core internet routing tables need to be updated;
         - It is hardly referred to by humans; (Example - AS19604 = IBM);
+
+-----------------------------
+* Interior Gateway Protocols
+-----------------------------
+The most common distance vector protocols are
+1. RIP, or Routing Information Protocol -  employs the hop count as a routing metric. 
+2. EIGRP, or Enhanced Interior Gateway Routing Protocol - used on a computer network for automating routing decisions and configuration.
+
+The most common link state protocol is 
+1. OSPF, or Open Shortest Path First - Is a routing protocol for Internet Protocol (IP) networks. It uses a link state routing (LSR) algorithm and falls into the group of interior gateway protocols (IGPs), operating within a single autonomous system (AS). 
+
+------------------------------
+* Exterior Gateway Protocols
+-----------------------------
+In terms of exterior gateway protocols, there is only one in use today. The entire Internet needs to agree on how to exchange this sort of information, so a single standard has emerged. This standard is known as BGP, or Border Gateway Protocol.
+
+BGP - Standardized exterior gateway protocol designed to exchange routing and reachability information among autonomous systems (AS) on the Internet.The Border Gateway Protocol makes routing decisions based on paths, network policies, or rule-sets configured by a network administrator and is involved in making core routing decisions.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+* Non-Routable Address Space
+-----------------------------
+-> RFC - Request for Comments;
+-> RFC 1918 - outlined a number of networks that would be defined as non-routable address space;
+-> Non-Routable Address Space - range of IPs set aside for use by anyone that cannot be routed to - They allows nodes on such a network to communicate with each other but no gateway router will attempt to forward traffic to this type of network;
+
+-> NAT - Network Address Translation - Allows non-routable address space to communicate with other devices on the Internet;
+
+-> RFC 1918 defined 3 ranges of IP addresses that will never be routed anywhere by co-routers - means that they belong to no one and anybody can use them;
+ - 10.0.0.0/8
+ - 172.16.0.0/12
+ - 192.168.0.0/16
+ * These ranges are free for anyone to use for their internal networks - interior gateway protocols will route these address spaces within an autonomous system by exterior gateway protocols will not;
+ 
+ 
+ 
+ 
