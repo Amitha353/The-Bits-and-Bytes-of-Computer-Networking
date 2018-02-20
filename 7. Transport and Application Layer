@@ -1,0 +1,85 @@
+* Transport Layer
+-------------------
+ Allows traffic to be directed to specific network applications;
+ 
+* Application Layer 
+---------------------
+Allows these applications to communicate in a way they can understand;
+
+* The Transport Layer
+-----------------------
+-> Has the ability to multiplex and de-multiplex;
+  * Multiplexing -> The nodes on the network have the ability to direct traffic towards many different receiving services.
+  
+  Process 1 -> 
+               | M
+  Process 2 -> | u p
+               | l l x r |   -> IP
+  Process 3 -> | t e e   |
+               | i
+  Process 4 -> |
+  
+  
+  * Demultiplexing -> Taking trafiic aimed at the same node and delivering it to the proper receiving service;
+    
+            | D
+            | e l  
+            | m e  |  -> Process 1
+      IP -> | u x  |  -> Process 2
+            | l    |
+            | t    |  -> Process 3
+            | i    |  -> Process 4 
+            | p
+   
+ - The transport layer handles multiplexing and demultiplexing through ports.
+ - A 16-bit number that's used to direct traffic to specific services running on a networked computer;
+ - Server - program running on a computer waiting to be asked for data;
+ - Client - program that is requesting this data;
+ - Different network services run while listening on specific ports for incoming request.
+ - Example : Traditional port for - HTTP or unencrypted web traffic is port 80; While requesting a webpage from a web server running on a computer listening on IP 10.1.1.100 - the traffic would be directed to port 80 on that computer;
+ 
+ - Ports are denoted by a colon after the IP address -> 10.1.1.100:80 -> Socket Address / Socket number;
+ 
+ - The same device might also be running an FTP (File Transfer Protocol) server - FTP an older method for transfering files from one computer to another but is still in use;
+ - FTP traditionally listens on port 21; - 10.1.1.100:21; 
+ 
+-> In small environments - a single server can host all the applications needed to run a business - intternal website, mail server, file server - share files, print servers - share network printers, etc - possible because of multiplexing and demultiplexing and addition of ports to the addressing scheme;
+
+-----------------------------------------------------------------------------------------------------------------------------------
+* Dissection of a TCP segment
+-----------------------------
+-> An ethernet framer encapsulates a IP datagram, an Ip datagram encapsulates a TCP segment; The ethernet frame's paylad is the entire content of the IP datagram; The Ip datagram's payload section is made up of the TCP segment;
+
+-> TCP segment - madeup of a TCP header and a data section; The data section is where the application layer places its data;
+-> A TCP header is split into different fields;
+       Bit 0                                Bit 15 Bit 16                             Bit 31
+        ----------------------------------------------------------------------------------
+                Source port (16)                 |     Destination port (16)
+        ----------------------------------------------------------------------------------
+                        Sequence number   (32)
+        ----------------------------------------------------------------------------------
+                          Acknowledgment number (32)
+        ----------------------------------------------------------------------------------     20
+        Header length(4)|Empty(6)|Control Flags(6)|    Window (16)
+        ----------------------------------------------------------------------------------    Bytes
+              Checksum (16)                       |     Urgent (16)
+        ----------------------------------------------------------------------------------
+            Options (0 or 16 if any)              |   Padding
+        ----------------------------------------------------------------------------------
+                          Data payload (varies)
+        ----------------------------------------------------------------------------------    
+ 
+ 1. Source port - A high-number port chosen from a special section of ports known as ephemeral ports - required to keep lots of outgoing connections separate - response is received by the web browser;
+ 2. Destination port - The port of the service the traffic is intended for;
+ 3. Sequence number - A 32-bit number used to keep track of where in a sequence of TCP segments this one is expected to be; 
+      The Ethernet frame has a limit of 1518 bytes and if the intended data to be sent is more than that the it is framnented and sent;
+ 4. Acknowledgment number - The number of thenext expected segment;
+ 5. Header length/ Data offset - 4 bit number that communicates how long a TCP header for this segment is;
+ 6. Empty - 
+ 7. Control Flags - TCP control flags
+ 8. TCP Window - specifies the range of sequencesnumbers that might be sent before the acknowledgment is required; 
+ 9. Checksum - When all the segments are ingested by the recipient the checksum is calculated across the entire segment and compared with the checksum in the header to make sure no data is lost or corrupted;
+ 10. Urgent - Used in comjunction with one of the TCP control flags to point out particular segments that might be more important than others;
+ 11. Options -  complicated flow control protocols;
+ 12. padding - extra zeros to ensure that the data payload section begins at the expected location;
+ 
