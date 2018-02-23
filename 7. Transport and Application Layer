@@ -124,4 +124,70 @@ A                                    B
     ------------FIN----------------->
     <-----------ACK------------------
 
-   
+----------------------------------------------------------------------------------------------------------------------------------------
+* TCP Socket States
+---------------------
+* Socket - The intantiation of an end-point in a potential TCP connection;
+* Instantiation - The actual implementation of something defined elsewhere.
+-> The traffic can be sent to any port, but the response will be available only if the program has opened a socket on that port.
+-> TCP sockets can exist in a lot of states.
+  a. LISTEN - A TCP socket is ready and listening for incoming connections - only on the server side;
+  b. SYN_SENT - A synchronication request has been sent but the connection hasn't been established yet; - only on the client side;
+  c. SYN-RECEIVED - A socket previously in a LISTEN state has received a synchronization request and sent a SYN/ACK back; - only on the server side;
+  d. ESTABLISHED - The TCP connection is in working order and both sides are free to send to each other data; - state is available in both the client and server sides of the connection;
+  e. FIN_WAIT - A FIN has been sent, but the corresponding ACK from the other end hasn't been received yet;
+  f. CLOSE_WAIT - The connection has been closed at the TCP layer, but that the application that opened the socket hasn't released its hold on the socket yet;
+  g. CLOSED - The connection has been fully terminated and that no further communication is possible;
+  
+There are more socket states, TCP protocols is universal but the socket states names may vary from operating systems but their functionality is the same; 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+* Connection-oriented and Connectionless Protocols
+--------------------------------------------------
+-> Connection-oriented Protocols - Establishes a connection, and uses this to ensure that all data has been properly transmitted. (TCP);
+  Every segment of data sent is acknowledged;
+- At the Ethernet and IP layer if the Checksum does not computer all the data is discarded, and it is up to TCP to determine when to resend the data since TCP expects an ACK for every bit of data it sends;
+- Sequence numbers enable data to be put back in the same order;
+-> There is a lot of overheade in regrad to the connection-oriented protocol
+  - Need to establish a connection;
+  - Need to send a stream of constant streams of acknowledgments;
+  - Tear the connection down at the end;
+ 
+-> Connectionless Protocol - User Datagram Protocol (UDP) - Here you set the destination port and send the packet - useful for messages that are not supper important - example - streaming video -  bandwidth is used for actual data rather than establishing connection overhead;
+
+----------------------------------------------------------------------------------------------------------------------------------------
+* System ports V/s Ephemeral ports
+------------------------------------
+- Transportation layer protocols use the concept of ports and multiplexing and demultiplexing to deliever data to individual service listening on network nodes. These ports are represented by a single 16-bit number (0 - 65535);
+
+The IANA has split the range into independent sections :
+---------------------------------------------------------
+- Port 0 - It is not used for network traffic, but for communication between different programs on the same computer;
+- Ports 1 - 1023 - System ports / ports - used for network services;
+     HTTP  - port 80; 
+     FTP - port 21; 
+     Most OS Administrative access is required to start a program that listens on a system port;
+- Ports 1024 - 49151 - registered ports - used for uncommon network services;
+    port 3306 - database listen on;
+    On most operating systems, any user of any access level can start a program listening on a registered port.
+- Ports 49152 - 65535 -  private or ephemeral ports
+     Ephemeral ports can’t be registered with the IANA and are generally used for establishing outbound connections.
+     All TCP traffic uses a destination port and a source port.
+     When a client wants to communicate with a server, the client will be assigned an ephemeral port to be used for just that one connection, while the server listens on a static system or registered port.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+* Firewalls
+---------------
+- A device that blocks traffic that meets certain criteria;
+- Provide secure network and can operate at lots of different layers of a network;
+   - Inspection of application layer traffic;
+   - Block ranges of IP addresses;
+ - They are most commonly used at the transportation layer;
+    - Firewalls will have configuration to enable data to flow through certain ports while be blocked on other ports;
+    
+-> A firewall can be configured at the perimeter of the network enabling clients/IPs to view the network and preventing any other information or access;
+-> Firewalls can be independent networks but could also be programs that could be run anywhere;
+-> Many cases the functionality of the router and firewalls is performed by the same device;
+-> Firewalss can run on individual hosts instead of being a network device;
+-> All major modern os habe firewall functionality built-in - therefore blocking services to ports can be performed at the host level as well;
