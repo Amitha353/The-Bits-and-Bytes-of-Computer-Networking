@@ -79,7 +79,49 @@ Allows these applications to communicate in a way they can understand;
  7. Control Flags - TCP control flags
  8. TCP Window - specifies the range of sequencesnumbers that might be sent before the acknowledgment is required; 
  9. Checksum - When all the segments are ingested by the recipient the checksum is calculated across the entire segment and compared with the checksum in the header to make sure no data is lost or corrupted;
- 10. Urgent - Used in comjunction with one of the TCP control flags to point out particular segments that might be more important than others;
+ 10. Urgent - Used in conjunction with one of the TCP control flags to point out particular segments that might be more important than others;
  11. Options -  complicated flow control protocols;
  12. padding - extra zeros to ensure that the data payload section begins at the expected location;
  
+-----------------------------------------------------------------------------------------------------------------------------------
+* TCP Control Flags and the three-way handshake
+-------------------------------------------------
+-> TCP as a protocols establishes connections used to send long chains of segments of data.
+-> TCP establishes connections through the use of different TCP control flags used in a very specific order.
+
+-> 6 TCP control flags - order they appear in the TCP header
+------------------------
+1. URG -> Urgent - A value of one here indicates that the segment is considered urgent and that the urgent pointer field has more data about this;
+2. ACK -> Acknowledged - A value of one in this field means that the acknowledgment number field should be examined.
+3. PSH -> push - The transmitting device wants the receiving device to push currently-buffered data to the application on the receiving end as soon as possible.
+(A buffer is a computing technique where a certain amount of data is held somewhere, before being sent elsewhere  -  used to send large chunks of data more efficiently);
+4. RST - Reset - One of the sides in a TCP connection has not been able to properly recover from a series of missing or malformed segments;
+5. SYN (synchronize) - It's used when first establishing a TCP connection and makes sure the receiving end knows to examine the sequence number field;
+6. FIN (finish) - When this flag is set to one, it means the transmitting computer does not have any more data to send and the connection can be closed.
+
+* Example of how a TCP control flags are used and connections are set:
+----------------------------------------------------------------------
+a. Computer A wants to establish connection with Computer B; Computer A - transmitting omputer, Computer B - Receving Computer;
+b. Computer A - sends a TCP segment top Computer B with the SYN flag set - Computer A wants to establish connection with Computer B and look at A's sequence number field;
+c. Computer B responds - by sending - a SYN/ACK Flags set - in order to establish the connection;
+d. Computer A responds only with the ACK flag set - to send data;
+
+Handshake -> A way for two devices to ensure that they are speaking the same protocol and will be ab;le to understand each other.
+
+A                     B
+   -------SYN-------->
+   <----SYN/ACK-------
+   -------ACK--------->
+   
+Since bothe A and B are able to exchange data - TCP connection at this state is operating in full DUPLEX;
+
+* Close the Connection - Four Way Handshake
+--------------------------------------------
+
+A                                    B
+    <---------FIN-------------------
+    ----------ACK------------------->
+    ------------FIN----------------->
+    <-----------ACK------------------
+
+   
