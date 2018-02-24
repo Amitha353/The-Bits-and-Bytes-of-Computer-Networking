@@ -1,0 +1,13 @@
+* Name Resolution
+------------------
+* DNS
+---------
+-> MAC address - 48-bit binary numbers - written out in 6 grouping of 2 hexadecimal digits;
+-> Remembering numbers is a tedious task than words.
+
+-> DNS - Domain Name System - A global and highly distributed network service that resolves strings of letters into IP addresses for you.
+
+-> Example for a weather website - IP address - 184.29.131.121 while the Domain name is - www.Weather.com - easier to remember the domain name;
+-> The IP address for a domain name can also change all the time - in case of administrative changes, movements of the data centers;
+-> The Domain name - The term we use for something that can be resolved by DNS;
+-> DNS provides geographical data utlilty by enabling clients to gather data from servers that are collated, New Delhi server -> New Delhi, New york -> New York clients; Cause of the global structure DNS lets organizations decide if youre in the region resolve the domain name to this IP.
