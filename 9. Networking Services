@@ -11,3 +11,45 @@
 -> The IP address for a domain name can also change all the time - in case of administrative changes, movements of the data centers;
 -> The Domain name - The term we use for something that can be resolved by DNS;
 -> DNS provides geographical data utlilty by enabling clients to gather data from servers that are collated, New Delhi server -> New Delhi, New york -> New York clients; Cause of the global structure DNS lets organizations decide if youre in the region resolve the domain name to this IP.
+
+
+* Name Resolution
+-------------------
+-> The many steps of Name Resolution
+-------------------------------------
+ Name Resolution - The process of using a DNS system to convert Domain names into IP addresses; 
+ - MAC address are hoardcoded to the hardware components;
+ 
+* 4 Things that must be configured for a host to operate on a network in an expected way in standard modern networking are:
+---------------------
+ 1. IP address
+ 2. Subnet mask
+ 3. Gateway for a host
+ 4. DNS server
+ 
+ * 5 types of DNS servers:
+ ----------------------------
+ 1. Caching name servers - Purpose is to store known domain name lookups for a certain amount of time;
+ 2. Recursive name servers - Purpose is to store known domain name lookups for a certain amount of time; Perform full DNS reolution requests;
+ 3. Root name servers
+ 4. TLD name servers
+ 5. Authoritative name servers
+ 
+ ->  All domain names in the global DNS system have a TTL/ time to live;
+ - Time to Live - (TTL) - A value, in seconds, that can be configured by the owner of a domain name for how long a name server is allowed to cache an entry before it should discard it and perform a full resolution again;
+ 
+ Local Recursive server performs a full recursive resolution
+ ----------------------------------------------------------
+ 1. Contact a root named server; There are 13 Root name servers/ 13 authorities that provide root name lookups as service - responsible for directing queries towards appropriate TLD name servers. They are distributed across the globe via anycast;
+   * Anycast - A technique that is used to route traffic to different destination depending on factors like location, congestion, or                    link health;
+ 
+ 2. The root servers will respond to a DNS lookup with TLD(Top-level domain - Last part of any domain name - .com/.org/.edu, etc) name server that should be queried;
+ 3. For each TLD there is a TLD name server / global distribution;
+ 4. The TLD servers will respond again with a redirect, informing the computer performing the name lookup with what authoritative name server to contact;
+ 5. The DNS lookup could be redirected at the authoriative server for the respective domain name;
+ 6. The authoritative server would finally provide the actual IP of the server in question;
+----------------------------------------------------------------------------------------------------------------------------------------
+* DNS and UDP
+---------------
+-> DNS is an example of an application layer service that uses UDP for the transport layer instead of TCP;
+-> UDP is connectionless - there is no setup or teardown of a connection;
