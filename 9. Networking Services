@@ -12,7 +12,6 @@
 -> The Domain name - The term we use for something that can be resolved by DNS;
 -> DNS provides geographical data utlilty by enabling clients to gather data from servers that are collated, New Delhi server -> New Delhi, New york -> New York clients; Cause of the global structure DNS lets organizations decide if youre in the region resolve the domain name to this IP.
 
-
 * Name Resolution
 -------------------
 -> The many steps of Name Resolution
