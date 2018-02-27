@@ -53,3 +53,39 @@
 ---------------
 -> DNS is an example of an application layer service that uses UDP for the transport layer instead of TCP;
 -> UDP is connectionless - there is no setup or teardown of a connection;
+
+- A single DNS request and its response can fit inside a single UDP datagram - ideal for a connectionless protocol;
+- DNS can generate a lot of traffic, caches of DNS entries are stored on local machines and caching name severs, for the full resolution to be processed all lot of traffic will exist;
+
+* Full DNS lookup to take place via TCP
+------------------------------------------
+1. The host making the DNS resolution request would send a SYN packet to the local name server on port 53 (port DNS - Domain Name System - listens on);
+2. The name servers responds with a SYN ACK packet;
+3. The original host needs to respond with an ACK in order to complete the three-way handshake - connection has been established;
+4. The original host has to send the actual request (IP address for a food accomplice);
+5. The name server would respond with another ACK;
+6. The caching server needs to talk to root name server to find who is responsible for the.com TLD; (3 way handshake) (opened) Four way handshake  (closed connection) --  process requires 11 packets
+- The recursive server has the correct TLD - top-level domain (.com, .edu. org, etc)name server;
+7. The recursive server needs to repeat the entire process to discover proper authoritative name servers;  -- requires 11 packets
+8. The recursive server repeats the process inorder to get the ip of food.com (TLD);  --- requires 11 packets;
+9. The recursive/cachine name server responds to the original host; - 1 packet;
+10. The host responds with an ACK confirmation; - 1 packet;
+11. Finally the TCP connection needs to be closed - four-way handshake; - 4 packets;
+
+
+Total packets : 44 packets; (minimum)
+
+* Full DNS lookup to take place via UDP
+------------------------------------------
+1. The host sends a UDP packet to its local name server on port 53 asking for the IP address for food.com; - 1 packet
+2. The local name server acts like a recursive server and sends up a UDP packet to root sever;
+3. The root server sends a response containing the proper TLD name server;
+4. The recursive name server sends a packet to the TLD server;
+5. Receives back a response containing the correct authoritative server;
+6. The recursive server sends its final request to the authoritative name server;
+7. The Authoritative name server sends a response containing IP for food.com;
+8. The recursive name server sends its final request to DNS resolver / host that made the request;
+
+Total -> 8 packets;
+(In case it doesn't get the packet, it request again);
+----------------------------------------------------------------------------------------------------------------------------------------
