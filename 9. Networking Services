@@ -88,3 +88,91 @@ Total packets : 44 packets; (minimum)
 Total -> 8 packets;
 (In case it doesn't get the packet, it request again);
 ----------------------------------------------------------------------------------------------------------------------------------------
+* Name Resolution in practice
+------------------------------
+* Resource Record Types
+-----------------------
+ - DNA (Domain name system) - operates with a set of defined resource record types - this allow for different types of DNS resolutions to take place.
+
+A record
+---------
+- Most common resource record - A record - It is used to point a certain domain name at a certain IPv4 IP address;
+- A single A record is configured for a single Domain name, but a single domain name can have multiple A records - Allows for a DNS Round Robin technique;
+- DNS round robin - is used to balance traffic across multiple IPs - iterate over a list of items one by one in an orderly fashion - inorder to equally balance each entry on the list thats selected;
+* Example - consider www.microsoft.com - domain name - likely sees a lot of traffic - to balance this traffic across multiple servers - four A records are configured at the authoritative server for microsoft.com domain;
+- The IPs - 10.1.1.1, 10.1.1.2, 10.1.1.3, and 10.1.1.4 are used;
+- When DNS resolver performs a look-up of www.microsoft.com - all four IPs will be returned in the order first configured -  10.1.1.1, 10.1.1.2, 10.1.1.3, and 10.1.1.4;
+- The next computer to perform a look-up for www.microsoft.com - all four IPs will be returned in response but in different order -  10.1.1.2, 10.1.1.3, 10.1.1.4,and 10.1.1.1;
+- This cyclic process keeps continuing;
+
+AAAA - Quad A
+--------------
+- Similar to A record but instead of an IPv4 address it returns a IPv4 address;
+
+CNAME (Canonical Name) record
+--------------------------------
+- It redirects traffic from one domain to another;
+- microft.com -> resolve to www.microsoft.com -> by configuring the CNAME record for microsoft.com that resolves to www.microsoft.com - the resolution client will perform another resolution attempt - www.microsoft.com;
+- Then use the IP returned by the second attempt;
+- They enable to change the canonical IP address of the server at one place;
+
+Two domain names redirected to the same place - 2 ways
+------------------------------------------------------
+1. Identical A records can be  setup for both microsoft.com and www.microsoft.com domain names - if the underlying IP address changes - then A records for both the domain names need to be changes;
+2. By setting a CNAME that points microsoft.com at www.microsoft.com - then only A records for www.microsoft.com needs to be changed;
+  - Clients pointing at the new domain will get the IP address;
+
+MX records - mail exchange
+---------------------------
+- Record server is used to deliver e-mails to the correct server;
+- Many companies run their web and mail servers on different machines with different IPs;
+
+SRV - service record
+---------------------
+- Used to define the location of various specific services - CalDAV - Calendar and Scheduling service;
+
+TXT record - text
+-----------------
+- Intended for text , additional data intended for other computers to process, used to communicate configuration preferences about the network service that other organizations are entrusted to handle for your domain;
+
+NS and SOA records - define authoritive information about DNS zones;
+---------------------------------------------------------------------------------------------------------------------------------------* Anatomy of Domain name
+------------------------
+- 3 parts
+www.google.com
+* .com - last part - TLD - Top-level domain name; - handled by ICANN - The Internet Corporation for Assigned Names and Numbers;
+* google - Domains - Used to demarcate where control moves from TLD name server to an authoritative name server; - registered and chossen by any individuals/ companies;
+* www - subdomain / hostname;
+
+- All together - fully qualified domain name (FQDN) - 255 characters
+- DNS can technically support 127 levels of domain i total for a single fully qualified domain name -each individual sections can be - 63 characters long;
+---------------------------------------------------------------------------------------------------------------------------------------* DNS zones
+-------------
+- They are an hierarchical concept;
+- The root name servers are responsible for the root zones;
+- Each TLD name server is responsible for the zone covering its specific TLD;
+- Authoritative name servers are responsible for even fine grained zones;
+- The root and TLD name servers are authoritative name servers - zones are special case;
+- Zones don't overlap;
+
+- Allows for easier control over multiple levels of a domain;
+
+- As the number of reource records in a single domain increase its difficult to manage, network administrators can ease their pain by spliting the configurations into multiple zones;
+- Consider - largecompany.com - offices in Tokyo, Bangalore and London - with 200 members each - total of 600 Unique desktop number - 600 A records - configured in a single DNS zone;
+- If it splits up each office into its own zone - ty.largecompany.com, bl.largecompany.com, ln.largecompany.com - as subsomains with their DNS zones and total of four authoritative name servers - largecompany, ty.largecompany.com, bl.largecompany.com, and ln.largecompany.com;
+
+- Zones are configured through Zone files - Simple configuration files that declare all resource records for a particular zone;
+- Contains an
+   SOA - Start of Authority resource record declaration - declares the zone and the name server name that is authoritative for it;
+   NS records - Indicates - other name servers responsible for the zone;
+   A
+   Quad A
+   CNAME
+   Configurations - Default TTL values;
+
+-> Reverse lookup zone files - These let DNS resolvers ask for an IP and get FQNS (fully qualified domain name ) associated with it returned; - using a PTR;
+- PTR - Pointer resource record - Resolves an IP to a name;
+
+
+
+
