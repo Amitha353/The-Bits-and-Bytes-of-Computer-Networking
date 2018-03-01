@@ -1,0 +1,15 @@
+* Dynamic Host Configuration Protocol
+----------------------------------------
+- Every coputer on a mordern TCP/IP network needs to have 4 thing configured:
+1. IP address
+2. Subnet mask for the local network
+3. Gateway
+4. Name server
+
+- Configuring 100s of them is a tedious task -  Subnet mask for the local network, Gateway, Name server are almst the same for the nodes on a network;
+- IP address needs to be different on every node on the network;
+- This is where DHCP is important;
+
+* DHCP - An application layer protocol that automates the configuration process of hosts on a network;
+    - With DHCP a machine queries a DHCP server when the computer connects to the network and receives all the network configurations in one go;
+    - For Gateways and routers static IP address are iportant and need to be known to all clients on the network;
