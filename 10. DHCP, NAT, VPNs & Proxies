@@ -12,4 +12,12 @@
 
 * DHCP - An application layer protocol that automates the configuration process of hosts on a network;
     - With DHCP a machine queries a DHCP server when the computer connects to the network and receives all the network configurations in one go;
-    - For Gateways and routers static IP address are iportant and need to be known to all clients on the network;
+    - For Gateways and routers static IP address are important and need to be known to all clients on the network;
+    
+* DHCP ways of operation:
+--------------------------
+1. Dynamic allocation - A range of IP addresses are set aside for client devices and one of these IPs is issued to these devices when they                         request one;  There the IP of a system can be different everytime it connects to the network;
+
+2. Automatic allocation - A range of IP addresses are set aside for assignmnet purpose; Here the DHCP tracks the assignment numbers                                   assigned to a host device and ensures to assign the same IP to the same machine;
+
+3. Fixed allocation - Requires a manually specified list of MAC address and their corresponding IPs; MAC address and IP addressing mapping                       and lookup; If the MAC address is not available the DHCP server will fall back to automatic or dynamic allocation;
