@@ -51,5 +51,35 @@ DHCP - can be used to configured a lot of things - IP Addresses, Gateways, NTP (
   
   5. The client machines networking stack now uses the configuration information  presented to it by the DHCP server to set up its own network layer configuration; This configuration - DHCP Lease - as it includes the expiration time. It might last for days or for a short amount of time; On expiration the DHCP client needs to negotiate a new lease by performing the entire DHCP Discovery process;
   
-  
+---------------------------------------------------------------------------------------------------------------------------------
+
+NAT - Network Address Translation
+-----------------------------------
+- It is a technique not a standard like - DNS, DHCP, etc;
+- NAT could be OS and hardware dependent;
+
+- A technology that allows a gateway usually a router or a firewall to rewrite the source IP of an outgoing IP datagram while retaining the original IP in order to rewrite it into the response;
+
+NAT is hiding the source IP address and masking with its gateway or relevant IP address; This is termed as IP masquerading;
+
+NAT and Transport Layer
+-------------------------
+- NAT at the network layer is easy but not so at the transport layer;
+- one ip is translated into another usually by a router;
+- many to one - > many IP address are translated into a single out bound NAT ip;
+- the reverse is complicated, the router needs to figure which response correspondce to which compuer; - The simpleast way to do this is via - port preservation;
+
+* Port preservation - a technique where the source port chosen by a client is the same port used by the router; Outbound comnnections choose ports at random - from the ephemeral ports - 49152 - 65535;
+
+Client                                                                          Destination
+------                                                                         -------------
+source IP - 10.1.1.1000                             Router                    
+destination - 10.1.1.100                                                       destination ip : 192.168.1.1
+source port - 51300                                                            source port - 51300
+
+- The source port in the TCP datagram remains the same, and the data is stored internally in a table; Then the traffic is forwarded back to the IP 10.1.1.100 on source port - 51300;
+
+
+
+
   
