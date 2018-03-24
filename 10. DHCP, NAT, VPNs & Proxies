@@ -6,7 +6,7 @@
 3. Gateway
 4. Name server
 
-- Configuring 100s of them is a tedious task -  Subnet mask for the local network, Gateway, Name server are almst the same for the nodes on a network;
+- Configuring 100s of them is a tedious task -  Subnet mask for the local network, Gateway, Name server are almost the same for the nodes on a network;
 - IP address needs to be different on every node on the network;
 - This is where DHCP is important;
 
@@ -21,3 +21,35 @@
 2. Automatic allocation - A range of IP addresses are set aside for assignmnet purpose; Here the DHCP tracks the assignment numbers                                   assigned to a host device and ensures to assign the same IP to the same machine;
 
 3. Fixed allocation - Requires a manually specified list of MAC address and their corresponding IPs; MAC address and IP addressing mapping                       and lookup; If the MAC address is not available the DHCP server will fall back to automatic or dynamic allocation;
+
+DHCP - can be used to configured a lot of things - IP Addresses, Gateways, NTP (Network time protocol), subnet networks, etc;
+- NTP - Network time protocols servers - used to keep all the computers on a network synchronized in time;
+
+
+* DHCP in Actions
+---------------------
+-> It is an Application layer protocol - relies on the transport, network, data-link and physical layers to operate; 
+-> The DHCP is useful to configure the network layer
+
+-> DHCP discovery - The process by which a client configured to use DHCP attempts to get network configuration information;
+- It has 4 steps:
+
+1. Server discovery step - 
+   The dhcp client sends a DHCP discover message out onto a network;
+   The machine doesn't have an ip nor does it know the ip of the DHCP server - a specially crafted broadcast message is formed instead;
+   The  DHCP listens on UDP port 67 and DHCP discovery message is sentfrom UDP port 68.
+   The DHCPDISCOVER message is encapsulated in a UDP datagram - destination port - 67, source port - 68; This is encapsulated inside an IP datagram - destination IP of 255.255.255.255 and source IP of 0.0.0.0;
+   This broadcast message will get delievered on every node on the local area network and if a DHCP server is present it would receive the message;
+   
+  2. The DHCP server will examine its own configuration and makes a decision on what IP address to offer the client; It checks if it is to run with dynamic, automatic or fixed address allocation;
+  Then a DHCPOFFER message will be sent with a destination messgae of port 68 and source port of 67, destination broadcast ip of - 255.255.255.255 and its actual IP as the source;
+  This message is also a broadcast it will be received by every machine on the network, and the original client would recognize the message was for itself. Since the DHCPOFFER has a field that specifies the MAC address of the client that sent the DHCP message;
+  
+  3. The client machine will then process the DHCPOFFER message to see what IP address is being offered to it. Itwould send a DHCPREQUEST Message. (0.0.0.0 -> 255.255.255.255 - since the IPs are not assigned);
+  
+  4. The server responds with a DHCPACK message; (The DHCP server source ip -> 255.255.255.255:68) - client recognized the message by the MAC address encapsulated in it;
+  
+  5. The client machines networking stack now uses the configuration information  presented to it by the DHCP server to set up its own network layer configuration; This configuration - DHCP Lease - as it includes the expiration time. It might last for days or for a short amount of time; On expiration the DHCP client needs to negotiate a new lease by performing the entire DHCP Discovery process;
+  
+  
+  
