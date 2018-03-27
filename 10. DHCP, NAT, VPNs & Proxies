@@ -72,14 +72,43 @@ NAT and Transport Layer
 * Port preservation - a technique where the source port chosen by a client is the same port used by the router; Outbound comnnections choose ports at random - from the ephemeral ports - 49152 - 65535;
 
 Client                                                                          Destination
-------                                                                         -------------
+------                                              (NAT)                        -------------
 source IP - 10.1.1.1000                             Router                    
 destination - 10.1.1.100                                                       destination ip : 192.168.1.1
 source port - 51300                                                            source port - 51300
 
 - The source port in the TCP datagram remains the same, and the data is stored internally in a table; Then the traffic is forwarded back to the IP 10.1.1.100 on source port - 51300;
+- Incase two computers on a network use the same port then the router normally selects an used port at random instead;
+
+* Port Forwarding -> A technique where specific destination ports can be configured to always be delievered to specific nodes;
+- This allows for IP masquerading; 
+-> The detination receives the source IP of the router rather than the actual server IP, while the router will route the intended traffic to the source wiythput exposing its IP address;
+
+
+Web Server                                      Router                                              Client
+
+IP - 10.1.1.5 
+         Destination IP - 10.1.1.5                                                       Destination IP - 192.168.1.1
+         Port - 80                                                                                port : 80
+         10.1.1.0/24
+         
+
+Consider a company with Web server (10.1.1.5) and a Mail server (10.1.1.6) -> Through port forwarding on their actual source IPs are never exposed but the routers address is exposed , when the response reached the traffic (same IP/ same DNS) is directed to the intended server based on the destination port;
+
+---------------------------------------------------------------------------------------------------------------------------------------
+* NAT, Non-Routable Address Space and the Limits of IPv4
+---------------------------------------------------------
+- IANA (Internet Assigned Numbers Authority) - incharge of distributing addresses since 1988;
+- IANA - responsible for assigning address blocks to the 5 regional internal registries - RIRs 
+    1. AFRINIC - Serves Africa
+    2. ARIN - United States, Canada, Parts of Caribbean;
+    3. APNIC - Most of Asia, Australia, New Zealand, Pacific Island Nations;
+    4. LACNIC - Central and South America, other parts of the Carribean;
+    5. RIPE - Europe, Russia, Middle East and portions of Central Asia;
+    
+IP address spaces are exhausting world-wide. Work arount - NAT (Network Addres Translation) and Non-routable address space;
+- RFC1918 - defined non-routable address space;
+- With one exposed address space - NAT can internally have multiple non-routable address spaces.
 
 
 
-
-  
