@@ -109,6 +109,3 @@ Consider a company with Web server (10.1.1.5) and a Mail server (10.1.1.6) -> Th
 IP address spaces are exhausting world-wide. Work arount - NAT (Network Addres Translation) and Non-routable address space;
 - RFC1918 - defined non-routable address space;
 - With one exposed address space - NAT can internally have multiple non-routable address spaces.
-
-
-
