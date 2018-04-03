@@ -1,0 +1,100 @@
+* Connecting to the Internet
+------------------------------
+
+* Dial-up, Modems and Point-to-point protocols :
+------------------------------------------------
+-> Early primituve technologies - mostly focused on connecting devices in close proximity;
+- PSTN (Public switch telephone network) and POTS (Plain old telephone service); - using phone lines to transmit data;
+
+-> 2 Duke students - using PSTN - to transfer data - built USENET;
+
+-> Dial-up connection - to exchange a series of messages with each other;
+   - It uses POTS for data-transfer, and the connection is established by dialing a phone number;
+   - Computer -> digital -> modem -> analog -> telephone exchange -> Analog -> modem -> digital -> computer;
+   
+ -> Modem -> Modulator / Demodulator -> Take computer understandable data and turn them into audible wavelengths that can be transmitted over POTS; since the telephone lines where created to transmit voice from one place to another;
+ - Similar to line coding conceptually that turns ones and zeros into modulating electrical charges across the Ethernet cables;
+ - Early modem - very low baud rates;
+ 
+ * Baud rate -> A measurement of how many bits can be transmitted across a phone line in a second;
+ -> 1950s -> baud rate - 110 bps;
+ -> USENET -> 300 bps;
+ -> Dial-up access -> 14.4 kbps (1990);
+ 
+Previously dial-up usage was wide-spread;
+----------------------------------------------------------------------------------------------------------------------------------------
+* Broadband
+-----------
+-> Any connectivity technology that is not dial-up Internet;
+-> Very fast, long lasting connections that don't need to be established with each use;
+
+-> T carrier technologies: Originally invented by AT&T in order to transmit multiple phone calls over a single link; Eventually able to transmit data faster than any dial-up connection;
+- T-carriers require dedicates lines, hence expensive;
+
+-> Common broad-band solutions
+------------------------------
+1. T-carrier technology;
+2. DSL - Digital subscriber lines;
+3. Cable broadband;
+4. Fiber connections;
+-----------------------------------------------------------------------
+1. T-Carrier Technologies
+---------------------------
+- Invented by AT&T - inorder to provision a system that allowed lots of phone calls to travel across a single cable;
+- Every individual phone calls were made across individual pairs of copper wire before Transmission System 1 (First T-Carrier Specification / T1);
+- AT&T invented a way to carry up to 24 simultaneous phone calls across a single piece of twisted pair copper;
+- Later on the same technology was re-purposed for data-transfer;
+- 24 phone channels - each capable of transmitting 64 kilobits per second;
+- Single T1 line -> cable of transfering - 1.544 megabits per second;
+
+-> With advancements -> T3 line -> 28 T1s all multiplexed -> 1.544 mbps x 28 = 44.736 mbps;
+-----------------------------------------------------------------------
+2. Digital Subscriber lines :
+-----------------------------
+-> Twisted pair copper used by modern telephone lines was capable of transmitting way more data than that was needed for voice to voice calls;
+-> By operating at a frequency range that did not interfer with normal phone calls, data transfer could occur - this technology - Digital subscriber line;
+-> Voice calls and data transfers could occur at the same time in the same lines;
+-> The manner similar to who Dail-ups used Modems, DSL technologies use their own modem - DSLAMs (Digital subscriber line acess multiplexers);
+- DSLAMS - these devices establish data connections across phone lines, and long-running (its not torn-dom easily);
+- Different kinds of DSL
+1. ADSL - Asymmetric DSL - upload and download speeds are different; (outbound and incoming data);
+2. SDSL - Symmetric DSL - upload and download speeds are same; - 1.544 Mbits/s
+3. HDSL - High Bit-rate DSL -  speeds > 1.544 Mbits/s;
+-----------------------------------------------------------------------
+3. Cable Broadband :
+--------------------
+-> The coaxial cables used for the cable television into a person's home were capable of transmitting data more than required for TV viewing, by using frequencies that don't interfere with television broadcast;
+-> Cable-based technologies were able to deliver high speed internet access across the same cables (for TV viewing);
+-> This is "Cable broadband"/ "Shared bandwith technologies";
+
+-> Technologies like DSL / Dial-up connection from home/ office -> goes to Central Office (CO);
+-> CO's are offices stacked with telephone operators - who use switchboard to manually connect the caller with the callee;
+-> With technological improvements - the CO's became smaller pieces of automated hardware that handled this functions for the telephone companies;
+
+-> Cable Internet connections are managed by a cable modem.
+-> Cable modem - sits at the edge of the consumer's network and connects it to the CMTS (Cable Modem Termination System);
+-> CMTS - connects lots of different cable connections to an ISPs core network;
+-----------------------------------------------------------------------
+4. Fiber Connections
+---------------------
+-> Internet core uses fiber for its connections
+    - higher speeds;
+    - without much signal degradation;
+-> Expensive - therefore it was used only for the ISPs;
+-> FTTX - Fiber to the X;
+   - FTTN - Fiber to the Neighbourhood - data delivered to a single physical cabinet - population, then on twisted pair copper / co-axial cables can be used for the last length of distance;
+   - FTTB - Fiber to business/building/basement - data-delivery to an individual building, twisted pait copper is used inside the building;
+   - FTTH - Fiber to the Home - Fiber runs to each individual homes;
+   - FTTP - Fiber to the premise - FTTB / FTTH;
+
+-> Instead of modem the demarcation for fiber technolgy is - Optical Network Terminator (ONT);
+- ONT - Converts data from protocols the fiber network can understand to those that more traditional, twisted-pair copper networks can understand;
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
