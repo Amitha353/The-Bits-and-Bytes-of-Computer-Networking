@@ -31,3 +31,42 @@
   4. Sequence control -  sequence number to keep track of the frames ordering;
   5. Data payload - Has all the data of the protocols up the stack;
   6. FCS - Frame Check Sequence field - contains a checksum used for cyclical redundancy check (like ethernet); 
+---------------------------------------------------------------------------------------------------------------------------------------- Wireless Network Configuration :
+-----------------------------------
+1. Ad-hoc networks -> Nodes speak directly to each other; 
+  - simplest;  
+  - Every device on the network and within range can communicate with every other device;
+  - Exchange data - photos, messages;
+  - disaster situation;
+2. Wireless LANs (WLANS) - one or more access points act as a bridge between a wireless and a wired network;
+   - Wired network acts as a normal LAN - contains outbound internet link;
+   - Wireless devices communicate with access points - forward traffic to the Gateway router - they data transfer occurs;
+3. Mesh netwroks - Hybrid of the two;
+  - A lot devices communicate with each other wirelessly - mostly wireless access points;
+----------------------------------------------------------------------------------------------------------------------------------------
+Wireless Channels
+------------------
+-> Channel - Individual smaller sections of the overall frequency band used by a wireless network;
+-> Address - collision domain (Any one network segment where one compute can interrupt another - overlap);
+-> Collision domain in wired networks is reduced by switches (They remember which computers live on which physical interfaces);
+-> The channels business and neighborhood business overlap as little as possible;
+----------------------------------------------------------------------------------------------------------------------------------------
+Wireless Security
+-----------------
+- WEP - Wired Equivalent Privacy - An encryption technology that provides a very low level of privacy;
+- More the bits in the key - longer to decrypt it;
+- WEP - uses only 40 bits for its encryption keys;
+
+- WEP  was replaced with WPA or Wi-Fi Protected Access - 128-bit key;
+- Today, WPA - 2 algorithm - 256-bit key;
+
+- MAC filtering - You can configure the access points to only allow for connections from a specific set of MAC addresses belonging to deviced you trust.
+----------------------------------------------------------------------------------------------------------------------------------------
+Cellular Networking
+----------------------
+- Mobile networking.
+- similar to the 802.11 specifications; and there are lot of different cellular specifications;
+- Like wifi, cellular networking operates over radio waves -over specific frequency bands reserved for cellular transmissions;
+- Theses frequencies can travel longer distances (KM / miles);
+- It is built around a ceoncept of cells - each cell is assigned a particular frequency band for use; neighbouring cells are setup to use bands that don't overlap;
+----------------------------------------------------------------------------------------------------------------------------------------
