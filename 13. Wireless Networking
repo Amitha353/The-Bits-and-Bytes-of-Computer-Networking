@@ -1,0 +1,33 @@
+* Introduction to Wireless Networking Technologies:
+----------------------------------------------------
+-> Wireless networking -> A way of networking without wires;
+-> IEEE 802.11 standards - list the specifications for wireless communication devices must operate;
+-> These set of specification - 802.11 family - Wifi - Wireless fidelity;
+-> Wireless networking devices communicate with each other through radiowaves;
+-> Different 802.11 standards generally operate using the same basic protocol but might operate at a different frequency bands;
+
+-> Frequency band - A certain section of the radio spectrum that is been agreed upon to be used for certain communications;
+ - North America - FM radio transmissions -> 88MHz - 108 MHz; ( FM broadcast band);
+ - Wifi networks operate on different frequency bands - 2.4 GHz - 5 GHz;
+ 
+ Common 802.11 specifications - 802.11a, 802.11b, 802.11g, 802.11n and 802.11ac;
+ 802.11 = physical and data link layers;
+ 802.11 frame has a number of fields - 
+ Octets:
+      2           2           6         6         6           2         6       0 - 7951      4
+ | Frame   |  Duration/ | Address |  Address |  Address | Sequence | Address |   Data      |  FCS |
+ | Control |    ID      |   1     |     2    |     3    |  Control |    4    |   Payload   |      | 
+ 
+ 1. Frame Control - has number of sub-fields that are used to describe how the frame itself needs to be processed. 802.11 version;
+ 2. Duration - specifies how long the total frame is. So the receiver knows how long to expect to the listen to the transmission to last;
+ 3. Address fields (4) - 
+  - Wireless access point - A device that bridges the wireless and wired portions of a network;
+  - A single wireless network may have a lot of access points to cover a large area;
+  - Devices on a wireless network will associate with an access point - the one they are physically closest to / signal strength / interference;
+    a. Source mac address;
+    b. intended destination on network;
+    c. receiving address - MAC address of the access point that should receive the frame;
+    d. treansmitting address - MAC address of what ahs tranmitted the frame;
+  4. Sequence control -  sequence number to keep track of the frames ordering;
+  5. Data payload - Has all the data of the protocols up the stack;
+  6. FCS - Frame Check Sequence field - contains a checksum used for cyclical redundancy check (like ethernet); 
