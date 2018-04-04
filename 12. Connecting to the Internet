@@ -90,11 +90,39 @@ Previously dial-up usage was wide-spread;
 -> Instead of modem the demarcation for fiber technolgy is - Optical Network Terminator (ONT);
 - ONT - Converts data from protocols the fiber network can understand to those that more traditional, twisted-pair copper networks can understand;
 ----------------------------------------------------------------------------------------------------------------------------------------
+* Wide Area Network Technologies (WANs) :
+-----------------------------------------
 
+Consider:
+--------
+1. Few employees with few computers at a single office, therefore use non-routable address space for internal IPs since IP addresses are scarce and expensive;
+2. Configure a router to perform NAT;
+3. Configure a local DNS server and a DHCP server to make network configuration easier;
+4. Sign a contract with ISP (Internet service provider) to deliver a link to Internet to this office so users can access the web;
+5. In case sales people want to connect to the resource set-up on the LAN - configure a VPN server and ensure it is accessible via port forwarding;
+6. Employees all over the world can connect via office LAN;
+7. Another office is setup across the country and they need to use resources from the office - here WAN is required;
 
+* WAN - Acts like a single network but spans across multiple physical locations;
+- It requires a contract a link across the Internet with the ISP;
+- The ISP handles sending data from one side to another;
 
+* Typical WAN setup:
+--------------------
+Regional Office -> Demarcation point -> Local loop (LEC / ISP) -> WAN -> Local loop (LEC / ISP) -> Demarcation point -> Regional office;
+-> Local loop - T-Carrier line, high-speed optical connection to the providers local regional office;
+-> Connects to the ISPs core network and the Internet at Large;
 
+-> WANS use a number of protocols at the data-link layer to transport data from one site to another;
+----------------------------------------------------------------------------------------------------------------------------------------* Point-to-Point VPNs :
+-----------------------
+- Popular alternative to WAN technology are Point-to-Point VPNs;
+- Companies are moving more and more of their internal services into the cloud;
+- the cloud lets companies outsource all or a part of different pieces of infrastructrure to other companies to manage;
+- Example e-mails - pay another company to handle email services;
+- VPN tunneling logic is handled by network devices at either sides so that users all don't have to establish their own connections;
+Site 1 ---->  Internet ( VPN tunnel ) --------->Site 2;
 
-
+----------------------------------------------------------------------------------------------------------------------------------------
 
 
