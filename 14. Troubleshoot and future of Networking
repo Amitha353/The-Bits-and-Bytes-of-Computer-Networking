@@ -1,0 +1,43 @@
+* Troubleshoot
+----------------
+-> Error-detection - The ability for a protocol or a program to determine that something is wrong.
+-> Error-recovery - The ability for a protocol or a program to attempt to fix it.
+
+ICMP (Internet Control Message Protocol) Ping :
+-------------------------------------------------
+- It is used to communicate any issues faced while connecting or transfer od data.
+- Mostly used by routers or remote hosts to communicate why transmission has failed back to the transmitter;
+
+- ICMP consists of 
+1. Header - few fields and a data-section - that can be used by the host to figure out which of their transmission generated the error.
+    a. Type (8 bits) - specifies the type of messgae being delivered - destination unreachable, time exceeded;
+    b. Code (8 bits) - Indicates a more specific reason; destination uinreachable (network, port unreachable);
+    c. Checksum (16 bit) - Compare the value to check if the data is not corrupted;
+    d. Rest of the header (32 bit) - optional - to send more infor - type / code;
+2. Data payload for the ICMP  packet - enables the recipient of the messgae to know which of the transmissions caused the error being reported; (It contains the IP header and the first 8 bytes of data payload section of the offending packet);
+
+Ping -> Tool to useful to detect network issues;
+- It lets you send a special type of ICMP message called an Echo Request.
+- The Echo Request justs checks if the destination exists;
+- If the destination is up and running and able to communicate on the network, it'll send back an ICMP Echo Reply message type;
+
+In the comand line  -> ping 8.8.8.8 -> ping <destination ip/ domain name>
+-------------------------------------------------------------------------------------------------------------------------------------------
+* Traceroute
+-------------
+- A utility that lets you discover the path between two nodes, and gives you information about each hop along the way;
+- It works by the manipulation of the TTL field at the IP level;
+- For each hop, traceoute sends three identical packets
+  - linux and Mac - traceroute google.com  (sends UDP packets to very high port numbers)
+  - windows - tracert google.com (displays the ICMP Echo Requests)
+ 
+ Similar tool:
+ - mtr - Linux/MacOS  (realtime);
+ - pathping - Windows (runs for 50s, and then displays all the aggregate data all at once);
+ ---------------------------------------------------------------------------------------------------------------------------------------
+ * Testing Port Connectivity
+ ----------------------------
+ - To test connectivity at the transport layer
+    - netcat - Linux/MacOS  -> nc <host> <port>  -> 2 arguments -> nc google.com 80 - tries to establish connection to google.com on port 80;
+    - Test-NetConnection - Windows
+    
