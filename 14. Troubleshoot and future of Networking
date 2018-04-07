@@ -39,5 +39,22 @@ In the comand line  -> ping 8.8.8.8 -> ping <destination ip/ domain name>
  ----------------------------
  - To test connectivity at the transport layer
     - netcat - Linux/MacOS  -> nc <host> <port>  -> 2 arguments -> nc google.com 80 - tries to establish connection to google.com on port 80;
+            nc -z -v google.com 80;
+            
     - Test-NetConnection - Windows
-    
+        Test-NetConnection google.com -> use an ICMP echo request;
+---------------------------------------------------------------------------------------------------------------------------------------      
+* Name Resolution Tools 
+-------------------------
+- nslookup <hostname> -> output - server used to perform the request and resolution result;
+---------------------------------------------------------------------------------------------------------------------------------------
+* Public DNS Servers
+----------------------    
+-> An ISP always gives access to a recursive name server as part of the service it provides;
+-> Public DNS Servers - Name servers specifically set up so that anyone can use  them for free;
+ -> Level 3 communications - ISPs - 4.4.4.1 - 4.4.4.6;
+ -> Google public name servers - Ips 8.8.8.8 , 8.8.4.4;
+ 
+ Most public DNS servers are available to be used through anycast;
+ ---------------------------------------------------------------------------------------------------------------------------------------
+ 
