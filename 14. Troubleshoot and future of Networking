@@ -61,6 +61,7 @@ Name Address
 
 Can start an interative session on nslookup by just typing : nslookup
 > google.com
+> server 8.8.8.8
 > set type=MX
 > google.com
 
@@ -70,9 +71,30 @@ Can start an interative session on nslookup by just typing : nslookup
 ----------------------    
 -> An ISP always gives access to a recursive name server as part of the service it provides;
 -> Public DNS Servers - Name servers specifically set up so that anyone can use  them for free;
+-> It can used to resolve name resolutions;
  -> Level 3 communications - ISPs - 4.4.4.1 - 4.4.4.6;
  -> Google public name servers - Ips 8.8.8.8 , 8.8.4.4;
  
- Most public DNS servers are available to be used through anycast;
+ Most public DNS servers are available to be used through anycast (A technique that is used to route traffic to different destination depending on factors like location, congestion, or link health;);
  ---------------------------------------------------------------------------------------------------------------------------------------
- 
+ * Registrars
+ -------------
+ Organizations responsible for assigning individual domain names to other organizations or individuals;
+ - Network Solutions Inc;
+ - Hundreds of comnpanies
+ - Expire;
+---------------------------------------------------------------------------------------------------------------------------------------
+* Host Files
+-------------
+- prior to DNS;
+- Original way that numbered network addresses were correlated with words was through host files;
+- Host File - Flat file that contains on each line a network address followed by the host name it can be referred to as;
+- 1.2.3.4 webserver (1.2.3.4 <-> webserver)
+- Evaluated by the networking stack of the OS;
+
+* Lookback addres -> always points to itself / sending traffic to itself;
+- IPV4 - 127.0.0.1 localhost
+- IPV6 - ::1 localhost 
+
+- Host files -> viruses to disrupt and redirect users traffic;
+---------------------------------------------------------------------------------------------------------------------------------------
