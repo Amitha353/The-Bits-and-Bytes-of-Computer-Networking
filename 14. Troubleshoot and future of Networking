@@ -47,6 +47,24 @@ In the comand line  -> ping 8.8.8.8 -> ping <destination ip/ domain name>
 * Name Resolution Tools 
 -------------------------
 - nslookup <hostname> -> output - server used to perform the request and resolution result;
+In order to identify the IP address of twitter.com
+
+nslookup twitter.com
+Output -> A record 
+Server
+Address
+
+Non-authoritative answer:
+Name 
+Address
+Name Address
+
+Can start an interative session on nslookup by just typing : nslookup
+> google.com
+> set type=MX
+> google.com
+
+> set debug (allows the tool to display the full response of the packets - including intermediary and all their contents(TTL - Zone Files).)
 ---------------------------------------------------------------------------------------------------------------------------------------
 * Public DNS Servers
 ----------------------    
