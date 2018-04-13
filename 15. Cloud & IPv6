@@ -1,0 +1,60 @@
+* Cloud
+---------
+-> Cloud computing - Technological approach where computing resources are provisioned in a shareable way, so that lots of users get what they need;
+-> Provide services by sharing resources;
+
+-> Hardware Virtualization - a physical machine and a logical machine can be abstracted away from each other.
+-> Virtualization - A single physical machine called a host could run many individual virtual instances called guests;
+
+-> Hardware Virtualization platforms employ hypervisor;
+-> Hypervisor - A piece of software that runs and manages virtual machines while also offering these guests a virtual operating platform that's indistinguishable from actual hardware;
+
+-> Public Cloud - A large cluster of machines run by another company;
+-> Private Cloud - Used by a single large cooperation and generally hosted on its own premises;
+-> Hybrid Cloud -  Public & Private Cloud;
+-------------------------------------------------------------------------------------------------------------------------------------------
+* Services
+-----------
+-> X as a Service
+-> IaaS - Infrastructure as a Service - use others network and servers; (abstracts away the infrastructure)
+-> Paas - Platform as a Service - platform is provided for customers to run their services - execution engine;
+-> Saas - Software as a Service - (abstracts away the server needed) - licensing the use of software to others while keeping the software centrally hosted and managed; - gmail for business / office 365 outlook;
+----------------------------------------------------------------------------------------------------------------------------------------
+* Cloud storage - duplicate data and ready available across geographic ; 
+----------------------------------------------------------------------------------------------------------------------------------------
+* IPv6 Addressing and Subnetting :
+----------------------------------
+- Address -> 128-bit | IPV4 - 32-bit;
+- 8 groups of 16 bits -  each group - 4 hexadecimal numbers;
+- Network id - 64-bits | Host id - 64 bits;
+- begins with 2001:0db8 -> documentation and education;
+- FF00:: - multicast (addressing hosts all at once);
+- FE80:: - Link-local unicast addresses - allow for local network segment communications and are configured based on a host's MAC address; - receive n/w configurations; 
+- loopback address - ::1 localhost
+
+IPV6 compression
+---------------
+- remove any leading zeros from group;
+- consecutive groups of zeros can be replaced with ::; 
+- only once;
+----------------------------------------------------------------------------------------------------------------------------------------
+*IPv6 Header:
+-------------
+- Version - 4 bit;
+- Class - (traffic class) - 8 bit;
+- Flow label - 20 bit;
+- Payload length - 16 bit;
+- Next header - optional ;
+- Hop limit - 8 bit - identical to TTL field in IPV4;
+- Source address - 128
+- Destination address - 128
+- Data payload;
+----------------------------------------------------------------------------------------------------------------------------------------
+* IPv4 and IPv6 harmony
+-----------------------
+- IPV4 mapped address space - ipv6 address space that can be directly correlated to IPv4 address (80 zeros follwed by 16 ones) ; 
+- IPV6 -> ipv4 -> IPv6 tunnels
+-> IPV6 tunnes -> 
+IPV6 server -------IPV6 traffic--------Encapuslate IPv4 datagram ----------------- IPV6 server;
+- IPV6 tunnel brokers - companies that IPV6 tunneling provide endpoints;
+----------------------------------------------------------------------------------------------------------------------------------------
