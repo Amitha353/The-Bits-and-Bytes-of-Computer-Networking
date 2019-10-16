@@ -107,7 +107,7 @@ A record
 
 AAAA - Quad A
 --------------
-- Similar to A record but instead of an IPv4 address it returns a IPv4 address;
+- Similar to A record but instead of an IPv4 address it returns a IPv6 address;
 
 CNAME (Canonical Name) record
 --------------------------------
