@@ -22,7 +22,7 @@ Networking
 * Responsible for defining a common way of interpreting these signals so network devices can communicate;
 * Many protocols for the Data link layer - most common - Ethernet, although wireless technologies are becoming popular;
 
-- The Ethernet standard - specifyes the physical layer attributes and defines protocols responsible for getting data to nodes on the same network or link;
+- The Ethernet standard - specifies the physical layer attributes and defines protocols responsible for getting data to nodes on the same network or link;
 
 - The data link layer is responsible to get data across a single link;
 
